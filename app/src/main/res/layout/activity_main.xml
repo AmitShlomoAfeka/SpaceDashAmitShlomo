@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/space_background">
+
+    <!-- פריסת הלבבות למעלה -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart1"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/heart_icon"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/heart_icon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart3"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/heart_icon" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- החללית במרכז למטה -->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/main_IMG_rocket"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/rocket_icon"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"/>
+
+    <!-- כפתור חץ שמאלה -->
+    <ImageButton
+        android:id="@+id/main_button_left"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/chevron_left"
+        android:contentDescription="Move Left"/>
+
+
+    <!-- כפתור חץ ימינה -->
+    <ImageButton
+        android:id="@+id/main_button_right"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/chevron_right"
+        android:contentDescription="Move Right" />
+
+</RelativeLayout>
