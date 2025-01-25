@@ -1,55 +1,95 @@
 package com.example.space_dash_amit_shlomo_01.logic
 
-import kotlin.random.Random
+class GameManager(private val maxLives: Int) {
 
-class GameManager(private val totalLives: Int) {
+    private var currentLives = maxLives
+    private var score = 0
+    private var distance = 0
+    var isGameOver = false
+        private set
 
-    private var rocketPosition: Int = 1 // 0 = left, 1 = center, 2 = right
-    private var remainingLives: Int = totalLives
-    private val obstacles = mutableListOf<Obstacle>()
-
-    val isGameOver: Boolean
-        get() = remainingLives <= 0
-
-    fun getRocketPosition(): Int {
-        return rocketPosition
-    }
-
-    fun getRemainingLives(): Int {
-        return remainingLives
-    }
+    private var rocketPosition = 2 // Default to middle lane (0-4)
+    private val lanes = Array(5) { mutableListOf<Obstacle>() } // 5 lanes for obstacles
 
     fun moveRocketLeft() {
         if (rocketPosition > 0) rocketPosition--
     }
 
     fun moveRocketRight() {
-        if (rocketPosition < 2) rocketPosition++
+        if (rocketPosition < 4) rocketPosition++
     }
 
-    fun addObstacle() {
-        val randomLane = Random.nextInt(0, 3)
-        obstacles.add(Obstacle(randomLane, 0))
+    fun getRocketPosition(): Int = rocketPosition
+
+    fun getRemainingLives(): Int = currentLives
+
+    fun getScore(): Int = score
+
+    fun getDistance(): Int = distance
+
+    fun increaseScore(points: Int) {
+        score += points
     }
 
-    fun updateObstacles() {
-        val iterator = obstacles.iterator()
-        while (iterator.hasNext()) {
-            val obstacle = iterator.next()
-            obstacle.yPosition++
-
-            // Check for collision
-            if (obstacle.yPosition == 9 && obstacle.lane == rocketPosition) {
-                remainingLives--
-                iterator.remove()
-            } else if (obstacle.yPosition > 9) {
-                iterator.remove() // Remove obstacles that move out of bounds
-            }
+    fun decreaseLife() {
+        currentLives--
+        if (currentLives <= 0) {
+            isGameOver = true
         }
     }
 
-    fun getRandomLane(): Int {
-        return Random.nextInt(0, 3)
+    fun spawnObstacle() {
+        val lane = getRandomLane()
+        val isCoin = kotlin.random.Random.nextBoolean()
+        val obstacle = Obstacle(isCoin, lane, 0f)
+        lanes[lane].add(obstacle)
     }
 
+    fun getRandomLane(): Int {
+        return kotlin.random.Random.nextInt(0, lanes.size)
+    }
+
+    fun updateObstacles() {
+        lanes.forEach { lane ->
+            val iterator = lane.iterator()
+            while (iterator.hasNext()) {
+                val obstacle = iterator.next()
+                obstacle.updatePosition(10)
+
+                if (obstacle.isOutOfScreen()) {
+                    iterator.remove()
+                } else if (obstacle.collidesWithRocket(rocketPosition)) {
+                    handleCollision(obstacle)
+                    iterator.remove()
+                }
+            }
+        }
+        increaseDistance(1)
+    }
+
+    private fun handleCollision(obstacle: Obstacle) {
+        if (obstacle.isCoin) {
+            increaseScore(100)
+        } else {
+            decreaseLife()
+        }
+    }
+
+    fun getObstacles(): List<Obstacle> {
+        return lanes.toList().flatten()
+    }
+
+
+    fun increaseDistance(increment: Int) {
+        distance += increment
+    }
+
+    fun resetGame() {
+        currentLives = maxLives
+        score = 0
+        distance = 0
+        isGameOver = false
+        rocketPosition = 2
+        lanes.forEach { it.clear() }
+    }
 }

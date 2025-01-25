@@ -77,4 +77,28 @@
         android:src="@drawable/chevron_right"
         android:contentDescription="Move Right" />
 
+    <TextView
+        android:id="@+id/main_TXT_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:text="Score: 0"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/main_TXT_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_TXT_score"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Distance: 0m"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+
 </RelativeLayout>

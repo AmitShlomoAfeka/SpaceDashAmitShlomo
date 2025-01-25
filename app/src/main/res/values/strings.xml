@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">Space_Dash_Amit_Shlomo_01</string>
+    <string name="menu_start_game">Start Game</string>
+    <string name="menu_high_scores">High Scores</string>
+    <string name="menu_buttons_mode">Buttons Mode</string>
+    <string name="menu_sensors_mode">Sensors Mode</string>
+    <string name="distance_format">Distance: %1$d m</string>
+    <string name="game_over_message">Game Over! Your score: %1$d</string>
+    <string name="space_dash_title">Space Dash</string>
+    <string name="start_game">Start Game</string>
+    <string name="choose_game_mode">Choose Game Mode:</string>
+    <string name="button_mode">Button Mode</string>
+    <string name="sensor_mode">Sensor Mode</string>
+    <string name="high_scores">High Scores</string>
+    <string name="score_format">Score: %1$d</string>
+    <string name="player_name">Player Name</string>
+    <string name="score">Score</string>
+    <string name="map">Map</string>
+    <string name="distance">Distance</string>
+
+    <string name="game_over">Game Over!</string>
+    <string name="final_score">Your final score: %1$d</string>
+    <string name="play_again">Play Again</string>
+    <string name="exit">Exit</string>
+    <string name="game_paused">Game Paused</string>
+
+    <string name="collected_coin">Coin collected!</string>
+    <string name="hit_obstacle">You hit an obstacle!</string>
+
 
 </resources>
