@@ -22,6 +22,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import com.example.space_dash_amit_shlomo_01.logic.GameManager
 import kotlin.random.Random
+import android.content.Intent
+
+
+import com.example.space_dash_amit_shlomo_01.data.HighScore
+import com.google.android.gms.maps.model.LatLng
+
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -121,15 +127,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
         handler.post(gameRunnable!!)
     }
-
     private fun updateRocketPosition() {
         val params = rocket.layoutParams as RelativeLayout.LayoutParams
         val laneWidth = mainLayout.width / 5
         val targetMargin = gameManager.getRocketPosition() * laneWidth
-
-        Log.d("RocketMovement", "RocketPosition: ${gameManager.getRocketPosition()}, TargetMargin: $targetMargin")
-
-        // Ensure left margin updates properly
         params.leftMargin = targetMargin
         rocket.layoutParams = params
     }
@@ -185,6 +186,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun handleGameOver() {
+        // קריאה ל-onGameOver עם הציון הסופי
+        onGameOver(gameManager.getScore())
+
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.game_over))
             .setMessage(getString(R.string.final_score, gameManager.getScore()))
@@ -195,8 +199,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 finish()
             }
             .show()
+
         handler.removeCallbacksAndMessages(null)
     }
+
 
     private fun restartGame() {
         gameManager.resetGame()
@@ -231,4 +237,36 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             sensorManager.unregisterListener(this)
         }
     }
+    private fun getCurrentPlayerName(): String {
+        return "Player" + (1..1000).random() // מחזיר שם זמני אקראי
+    }
+
+    private fun getCurrentPlayerLocation(): LatLng {
+        return LatLng(32.0853, 34.7818) // מחזיר מיקום תל אביב לדוגמה
+    }
+
+
+    private fun onGameOver(finalScore: Int) {
+        val playerName = getCurrentPlayerName() // קבלת שם השחקן
+        val playerLocation = getCurrentPlayerLocation() // קבלת מיקום השחקן
+
+        if (playerName.isNotEmpty() && playerLocation != null) {
+            val newHighScore = HighScore(playerName, finalScore, playerLocation)
+
+            // הוספת השחקן לטבלת השיאים
+            HighScoresManager.addPlayerScore(newHighScore)
+
+            // בדיקה מחדש האם הוא זכאי
+            if (HighScoresManager.isEligibleForHighScores(finalScore)) {
+                HighScoresManager.sortHighScores()
+            }
+        }
+
+        // מעבר למסך טבלת השיאים
+        val intent = Intent(this, HighscoresActivity::class.java)
+        startActivity(intent)
+    }
+
+
+
 }

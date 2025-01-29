@@ -42,16 +42,14 @@
             app:srcCompat="@drawable/heart_icon" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!-- החללית במרכז למטה -->
+    <!-- החללית -->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/main_IMG_rocket"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         app:srcCompat="@drawable/rocket_icon"
-        android:layout_centerInParent="true"
         android:scaleType="fitCenter"/>
 
     <!-- כפתור חץ שמאלה -->

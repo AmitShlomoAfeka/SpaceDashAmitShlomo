@@ -1,5 +1,8 @@
 package com.example.space_dash_amit_shlomo_01.logic
 
+import com.example.space_dash_amit_shlomo_01.data.HighScore
+import com.google.android.gms.maps.model.LatLng
+
 class GameManager(private val maxLives: Int) {
 
     private var currentLives = maxLives
@@ -92,4 +95,9 @@ class GameManager(private val maxLives: Int) {
         rocketPosition = 2
         lanes.forEach { it.clear() }
     }
+    fun endGame(playerName: String, score: Int, location: LatLng) {
+        val newHighScore = HighScore(playerName, score, location)
+        HighScoresManager.addPlayerScore(newHighScore)
+    }
+
 }

@@ -23,9 +23,9 @@
     <string name="play_again">Play Again</string>
     <string name="exit">Exit</string>
     <string name="game_paused">Game Paused</string>
-
     <string name="collected_coin">Coin collected!</string>
     <string name="hit_obstacle">You hit an obstacle!</string>
+    <string name="back_to_menu">חזרה לתפריט</string>
 
 
 </resources>

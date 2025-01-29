@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/space_background"
+    tools:context=".MenuActivity">
+
+    <!-- כותרת המשחק -->
+    <TextView
+        android:id="@+id/menu_TXT_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/space_dash_title"
+        android:textSize="40sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <!-- כפתור התחלת המשחק -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_start"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/start_game"
+        style="@style/BlackButtonStyle"
+        android:layout_below="@id/menu_TXT_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <!-- כותרת מצב משחק -->
+    <TextView
+        android:id="@+id/menu_TXT_mode_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_game_mode"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/menu_BTN_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <!-- אפשרות למצב כפתורים -->
+    <RadioButton
+        android:id="@+id/menu_RB_button_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:padding="8dp"
+        android:text="@string/button_mode"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/menu_TXT_mode_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <!-- אפשרות למצב סנסורים -->
+    <RadioButton
+        android:id="@+id/menu_RB_sensor_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:padding="8dp"
+        android:text="@string/sensor_mode"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/menu_RB_button_mode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <!-- כפתור טבלת שיאים -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_highscores"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/high_scores"
+        style="@style/BlackButtonStyle"
+        android:layout_below="@id/menu_RB_sensor_mode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+</RelativeLayout>
